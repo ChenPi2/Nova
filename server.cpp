@@ -339,7 +339,11 @@ static void run_event_loop(int listenfd) {
                     continue;
                 }
 
-                write(STDOUT_FILENO, buf, ret);
+                ssize_t bytes_written = write(STDOUT_FILENO, buf, ret);
+                if(bytes_written == -1)
+                {
+                    perror("write error\n");
+                }
 
                 // 【核心】把"处理 + 写回"整体丢给线程池，主线程马上回去 epoll_wait。
                 // data 必须按值捕获：buf 是栈变量，submit 一返回就失效了。
@@ -366,7 +370,5 @@ int main(int argc, char* argv[]) {
     int listenfd = create_listener(port);
     run_event_loop(listenfd);
     close(listenfd);
-    hello
     return 0;
-
 }
