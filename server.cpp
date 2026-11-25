@@ -366,8 +366,6 @@ int main(int argc, char* argv[]) {
     int listenfd = create_listener(port);
     run_event_loop(listenfd);
     close(listenfd);
-    
-    printf("hello hello");
     return 0;
 
 }
