@@ -1,0 +1,22 @@
+# Build artefacts
+server
+*.o
+*.obj
+*.a
+*.so
+*.exe
+build/
+out/
+
+# Runtime
+*.log
+*.pid
+core
+core.*
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
